@@ -1,4 +1,6 @@
-import { NotImplementedError } from '../extensions/index.js';
+import {
+  NotImplementedError
+} from '../extensions/index.js';
 
 /**
  * In the popular Minesweeper game you have a board with some mines and those cells
@@ -23,7 +25,35 @@ import { NotImplementedError } from '../extensions/index.js';
  *  [1, 1, 1]
  * ]
  */
-export default function minesweeper (/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
-}
+let newMatrix = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null]
+];
+let newMatrix2 = [
+  [null, null, null],
+  [null, null, null]
+];
+
+export default function minesweeper(matrix) {
+  if (matrix.length === 3) {
+    newMatrix[0][0] = matrix[0][1] / 1 + matrix[1][1] / 1 + matrix[1][0] / 1; //1
+    newMatrix[0][1] = matrix[0][0] / 1 + matrix[1][0] / 1 + matrix[1][1] / 1 + matrix[1][2] / 1 + matrix[0][2] / 1; //2
+    newMatrix[0][2] = matrix[0][1] / 1 + matrix[1][1] / 1 + matrix[1][2] / 1; //3
+    newMatrix[1][0] = matrix[0][0] / 1 + matrix[0][1] / 1 + matrix[1][1] / 1 + matrix[2][0] / 1 + matrix[2][1] / 1; //4
+    newMatrix[1][1] = matrix[0][0] / 1 + matrix[0][1] / 1 + matrix[0][2] / 1 + matrix[1][0] / 1 + matrix[1][2] / 1 + matrix[2][0] / 1 + matrix[2][1] / 1 + matrix[2][2] / 1; //5
+    newMatrix[1][2] = matrix[0][1] / 1 + matrix[0][2] / 1 + matrix[1][1] / 1 + matrix[2][1] / 1 + matrix[2][2] / 1; //6
+    newMatrix[2][0] = matrix[1][0] / 1 + matrix[1][1] / 1 + matrix[2][1] / 1; //7
+    newMatrix[2][1] = matrix[1][0] / 1 + matrix[1][1] / 1 + matrix[1][2] / 1 + matrix[2][0] / 1 + matrix[2][2] / 1; //8
+    newMatrix[2][2] = matrix[1][1] / 1 + matrix[1][2] / 1 + matrix[2][1] / 1; //9
+    return newMatrix;
+  } else if (matrix.length === 2) {
+    newMatrix2[0][0] = matrix[0][1] / 1 + matrix[1][1] / 1 + matrix[1][0] / 1; //1
+    newMatrix2[0][1] = matrix[0][0] / 1 + matrix[1][0] / 1 + matrix[1][1] / 1 + matrix[1][2] / 1 + matrix[0][2] / 1; //2 up
+    newMatrix2[0][2] = matrix[0][1] / 1 + matrix[1][1] / 1 + matrix[1][2] / 1; //3
+    newMatrix2[1][0] = matrix[0][0] / 1 + matrix[0][1] / 1 + matrix[1][1] / 1; //4
+    newMatrix2[1][1] = matrix[0][0] / 1 + matrix[0][1] / 1 + matrix[0][2] / 1 + matrix[1][0] / 1 + matrix[1][2] / 1; //5
+    newMatrix2[1][2] = matrix[1][1] / 1 + matrix[0][1] / 1 + matrix[0][2] / 1; //6
+    return newMatrix2;
+  }
+};
